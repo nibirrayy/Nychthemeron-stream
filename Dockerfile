@@ -15,16 +15,16 @@ RUN pip3 install youtube_dl
 RUN pip3 install PyLivestream
 
 #Configuring Pylivestream
-COPY $PWD/pylivestream.ini $HOME/pylivestream.ini
-COPY $PWD/platfrom.key $HOME/platfrom.key
+COPY pylivestream.ini /home/pylivestream.ini
+COPY $PWD/platform.key /home/platform.key
 
 #Playlist-sync service
-RUN mkdir $HOME/music
-RUN git clone https://github.com/nibirrayy/youtube-playlist-sync.git
-RUN python3 $HOME/youtube-playlist-sync/yps.py --init $PLAYLIST --dir music
+RUN cd /home ; mkdir music
+RUN git clone https://github.com/nibirrayy/youtube-playlist-sync.git /home/youtube-playlist-sync
+RUN python3 /home/youtube-playlist-sync/yps.py --init https://www.youtube.com/playlist?list=PL-C53MG1DMX0XLbgXJBC7rJu957aV4BAx --dir /home/music
 
 #Configuring cron jobs
-RUN apt get install -y cron
+RUN apt-get install -y cron
 COPY musicSync-cron /etc/cron.d/musicSync-cron
 RUN chmod 0744 /etc/cron.d/musicSync-cron
-RUN crontab /etc/cron.d/hmusicSync-cron
+RUN crontab /etc/cron.d/musicSync-cron
