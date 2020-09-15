@@ -1,0 +1,1 @@
+0 0 * * * python3 $HOME/youtube-playlist-sync/yps.py --sync $HOME/music
