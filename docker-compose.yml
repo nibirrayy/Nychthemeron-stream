@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  Nychthemeron-stream:
+  nychthemeron-stream:
     build: .
     volumes:
-      - /src:$HOME/src
+      - /src:/home/src

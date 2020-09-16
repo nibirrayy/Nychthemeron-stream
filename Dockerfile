@@ -28,3 +28,5 @@ RUN apt-get install -y cron
 COPY musicSync-cron /etc/cron.d/musicSync-cron
 RUN chmod 0744 /etc/cron.d/musicSync-cron
 RUN crontab /etc/cron.d/musicSync-cron
+
+
